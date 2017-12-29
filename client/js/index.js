@@ -1,29 +1,45 @@
 $(function(){
+  var l = new Login();
+})
 
-  $('#formAcceso').submit(function(event){
-    var username = $('#formAcceso').find('#username').val();
-    var password = $('#formAcceso').find('#password').val();
-    event.preventDefault();
+class Login {
+  constructor() {
+    this.submitEvent()
+  }
+
+  submitEvent(){
+    $('form').submit((event)=>{
+      event.preventDefault()
+      this.sendForm()
+    })
+  }
+
+  sendForm(){
+    let form_data = new FormData();
+    form_data.append('username', $('#user').val())
+    form_data.append('password', $('#password').val())
     $.ajax({
-      url: '../server/login.php',
+      url: '../server/check_login.php',
       dataType: "json",
       cache: false,
-      data: {username: username, password: password},
+      processData: false,
+      contentType: false,
+      data: form_data,
       type: 'POST',
-      success: function(php_response){
-        if (php_response.conexion=="OK") {
-          if (php_response.acceso == 'concedido') {
+      success: function(respuestaAJAX){
+        if (respuestaAJAX.conexion=="OK") {
+          if (respuestaAJAX.acceso == 'concedido') {
             window.location.href = 'main.html';
           }else {
-            alert(php_response.motivo);
+            alert(respuestaAJAX.motivo);
           }
         }else{
-          alert(php_response.conexion);
+          alert(respuestaAJAX.conexion);
         }
       },
-      error: function(php_response){
+      error: function(respuestaAJAX){
        alert("error en la comunicación con el servidor");
       }
-    });
-  });
-});
+    })
+  }
+}
