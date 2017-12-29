@@ -53,7 +53,7 @@
     }
 
 
-    function insertarDatos($tabla, $datos){
+    function insertarRegistro($tabla, $datos){
       $sqlInsert = 'INSERT INTO '.$tabla;
 
       $sqlCampo = ' (';
@@ -72,6 +72,12 @@
       }
       $sqlInsert .= $sqlCampo.$sqlValor;
       return $this->conexion->query($sqlInsert);
+    }
+
+
+    function eliminarRegistro($tabla, $condicion){
+      $sqlDelete = 'DELETE FROM '.$tabla.' WHERE '.$condicion.';';
+      return $this->conexion->query($sqlDelete);
     }
 
 

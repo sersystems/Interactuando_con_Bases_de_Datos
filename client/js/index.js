@@ -37,8 +37,8 @@ class Login {
           alert(respuestaAJAX.conexion);
         }
       },
-      error: function(respuestaAJAX){
-       alert("error en la comunicación con el servidor");
+      error: function(){
+        alert("error en la comunicación con el servidor");
       }
     })
   }

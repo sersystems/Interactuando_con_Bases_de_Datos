@@ -1,6 +1,6 @@
 <?php
 
-  	require('conector.php');
+  	require_once('conector.php');
 
   	$datos['nombre'] = "'luis Sebastian Vargas'";
   	$datos['email'] = "'luis20@gmail.com'";
@@ -20,5 +20,4 @@
     	$respuesta = "No se pudo conectar a la base de datos";
   	}
     $con->cerrarConexion();
-    echo $respuesta;
 ?>

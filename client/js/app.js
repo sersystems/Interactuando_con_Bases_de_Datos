@@ -1,4 +1,3 @@
-$(document).foundation()
 
 class EventsManager {
     constructor() {
@@ -7,27 +6,26 @@ class EventsManager {
 
 
     obtenerDataInicial() {
-        let url = '../server/getEvents.php'
-        $.ajax({
-          url: url,
-          dataType: "json",
-          cache: false,
-          processData: false,
-          contentType: false,
-          type: 'GET',
-          success: (data) =>{
-            if (data.msg=="OK") {
-              this.poblarCalendario(data.eventos)
-            }else {
-              alert(data.msg)
-              window.location.href = 'index.html';
-            }
-          },
-          error: function(){
-            alert("error en la comunicación con el servidor");
-          }
-        })
-
+        // let url = '../server/getEvents.php'
+        // $.ajax({
+        //   url: url,
+        //   dataType: "json",
+        //   cache: false,
+        //   processData: false,
+        //   contentType: false,
+        //   type: 'GET',
+        //   success: function(data){
+        //     if (data.conexion=="OK") {
+        //       this.poblarCalendario(data.eventos)
+        //     }else{
+        //       alert(data.conexion);
+        //       window.location.href = 'index.html';
+        //     }
+        //   },
+        //   error: function(){
+        //     alert("error en la comunicación con el servidor1");
+        //   }
+        // })
     }
 
     poblarCalendario(eventos) {
@@ -73,15 +71,16 @@ class EventsManager {
       var form_data = new FormData();
       form_data.append('titulo', $('#titulo').val())
       form_data.append('start_date', $('#start_date').val())
-      form_data.append('allDay', document.getElementById('allDay').checked)
       if (!document.getElementById('allDay').checked) {
         form_data.append('end_date', $('#end_date').val())
         form_data.append('end_hour', $('#end_hour').val())
         form_data.append('start_hour', $('#start_hour').val())
+        form_data.append('allDay', '0')
       }else {
         form_data.append('end_date', "")
         form_data.append('end_hour', "")
         form_data.append('start_hour', "")
+        form_data.append('allDay', '1')
       }
       $.ajax({
         url: '../server/new_event.php',
@@ -92,8 +91,8 @@ class EventsManager {
         data: form_data,
         type: 'POST',
         success: (data) =>{
-          if (data.msg=="OK") {
-            alert('Se ha añadido el evento exitosamente')
+          if (data.conexion=="OK") {
+            alert('Se ha añadido el evento exitosamente');
             if (document.getElementById('allDay').checked) {
               $('.calendario').fullCalendar('renderEvent', {
                 title: $('#titulo').val(),
@@ -108,19 +107,14 @@ class EventsManager {
                 end: $('#end_date').val()+" "+$('#end_hour').val()
               })
             }
-
-
-
-
           }else {
-            alert(data.msg)
+            alert(data.estado);
           }
         },
         error: function(){
           alert("error en la comunicación con el servidor");
         }
       })
-
     }
 
     eliminarEvento(event, jsEvent){
