@@ -1,6 +1,5 @@
 <?php
 
-
   class ConectorBD{
     private $host;
     private $user;
@@ -22,25 +21,23 @@
         return "OK";
       }
     }
-   
+
 
     function consultarDatos($tablas, $campos, $condicion = ""){
-      $sqlConsultar = 'SELECT ';
+      $sqlConsulta = 'SELECT ';
 
-      $indiceUltimoCampo = end(array_keys($campos));
       foreach ($campos as $indice => $value) {
         $sqlConsulta .= $value;
-        if ($indice!=$indiceUltimoCampo) {
+        if ($indice < count($campos)-1) {
           $sqlConsulta .= ', ';
         }else{
          $sqlConsulta .=" FROM ";
         }
       }
 
-      $indiceUltimaTabla = end(array_keys($tablas));
       foreach ($tablas as $indice => $value){
         $sqlConsulta .= $value;
-        if ($indice!=$indiceUltimaTabla){
+        if ($indice < count($tablas)-1) {
           $sqlConsulta .= ', ';
         }else{
           $sqlConsulta .= " ";
@@ -52,8 +49,7 @@
       }else{
         $sqlConsulta .= $condicion.";";
       }
-      return $sqlConsulta;
-      //return $this->conexion->query($sqlConsulta);
+      return $this->conexion->query($sqlConsulta);
     }
 
 
