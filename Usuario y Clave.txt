@@ -1,2 +1,10 @@
+Acceso al sistema web:
 usuario: serdigital@live.com.ar
 clave: 123456
+
+MySQL esta sin clave:
+Servidor: "localhost" 
+Usuario: "root"  
+Clave: "" 
+DB: "nextu_sergio"
+
