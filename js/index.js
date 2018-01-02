@@ -2,6 +2,7 @@ $(function(){
   var l = new Login();
 })
 
+
 class Login {
   constructor() {
     this.submitEvent()
@@ -26,15 +27,11 @@ class Login {
       contentType: false,
       data: form_data,
       type: 'POST',
-      success: function(respuestaAJAX){
-        if (respuestaAJAX.conexion=="OK") {
-          if (respuestaAJAX.acceso == 'concedido') {
-            window.location.href = 'main.html';
-          }else {
-            alert(respuestaAJAX.motivo);
-          }
-        }else{
-          alert(respuestaAJAX.conexion);
+      success: function(php_response){
+        if (php_response.msg == "OK") {
+          window.location.href = 'main.html';
+        }else {
+          alert(php_response.msg);
         }
       },
       error: function(){
