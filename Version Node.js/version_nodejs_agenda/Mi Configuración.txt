@@ -1,0 +1,25 @@
+*********************** NodeJS *************************
+1.- Instalar Node.js
+2.- Verificar si esta corriendo NodeJS (Respuesta: v8.9.4)
+	node -v
+3.- Verificar si esta corriendo npm (Respuesta: v5.6.0)
+	npm -v
+4.- Crear un nuevo proyecto de NodeJS
+	mkdir server
+	npm init (Dentro de la carpeta contenedora)
+5.- Configurar datos del nuevo proyecto de NodeJS (Creará el archivo package.json)
+	name: (version_nodejs_agenda) agenda
+	version: (1.0.0)
+	description: Interactuando con Bases de Datos. Version NodeJS
+	entry point: (index.js)
+	keywords: NodeJS MongoDB
+	author: Sergio Regalado Alessi
+	license(ISC): MIT
+6.- Instalar Dependencias
+	npm i -S express
+	npm i -S express-session
+	npm i -S body-parser	(Analiza los cuerpos de solicitud entrantes en un middleware antes de sus manejadores, disponible bajo la propiedad req.body.)
+	npm i -S mongoose	(Mongoose es una herramienta de modelado de objetos MongoDB diseñada para trabajar en un entorno asíncrono)
+	npm i -D nodemon 	(nodemon observará los archivos en el directorio en el que se inició nodemon, y si los archivos cambian, nodemon reiniciará automáticamente su aplicación de nodo.)
+7.- Correr Servidor
+	node index.js (Para cerrar el servidor oprimimos la tecla "Ctrl+C")

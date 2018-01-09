@@ -1,0 +1,25 @@
+{
+  "name": "agenda",
+  "version": "1.0.0",
+  "description": "Interactuando con Bases de Datos. Version NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "NodeJS",
+    "MongoDB"
+  ],
+  "author": "Sergio Regalado Alessi",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "mongoose": "^4.13.9"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.9"
+  }
+}
